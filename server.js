@@ -16,6 +16,7 @@ const MongoDbStore = require('connect-mongo')(session)
 
 // Database connection
 const url = 'mongodb://127.0.0.1:27017/df';
+const connection = mongoose.connection;
 mongoose.connect(url).then(() =>{
     console.log("database connected")
 })
