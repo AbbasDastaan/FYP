@@ -1,0 +1,65 @@
+[{
+  "_id": {
+    "$oid": "5eee651f739f8c674fd736ee"
+  },
+  "name": "Chiken biryani",
+  "image": "biryani.jpg",
+  "price": "320",
+  "size": "1Plate"
+},{
+  "_id": {
+    "$oid": "5eee6671a27a66807cf2bea3"
+  },
+  "name": "Kabali Pulao",
+  "image": "kpulao.jpg",
+  "price": "300",
+  "size": "1Plate"
+},{
+  "_id": {
+    "$oid": "5eee6692a27a66807cf2bea4"
+  },
+  "name": "Chicken White Handi",
+  "image": "chandi1.jpeg",
+  "price": "1500",
+  "size": "Full"
+},{
+  "_id": {
+    "$oid": "5eee66a5a27a66807cf2bea5"
+  },
+  "name": "Chicken Brown Handi",
+  "image": "chandi2.jpg",
+  "price": "1450",
+  "size": "Full"
+},{
+  "_id": {
+    "$oid": "5eee66c4a27a66807cf2bea6"
+  },
+  "name": "Chicken Roast",
+  "image": "croast.jpg",
+  "price": "1400 ",
+  "size": "Full"
+},{
+  "_id": {
+    "$oid": "5eee66cfa27a66807cf2bea7"
+  },
+  "name": "Chicken BBQ Pieces",
+  "image": "cbbq.jpg",
+  "price": "300",
+  "size": "1Piece"
+},{
+  "_id": {
+    "$oid": "5eee66eea27a66807cf2bea8"
+  },
+  "name": "Sekh Kabab",
+  "image": "sekhk.jpg",
+  "price": "400",
+  "size": "4Pieces"
+},{ 
+  "_id": {
+    "$oid": "5eee6717a27a66807cf2bea9"
+  },
+  "name": "Malai Booti",
+  "image": "malaib.jpg",
+  "price": "400",
+  "size": "1Piece"
+}]
