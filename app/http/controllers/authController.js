@@ -2,6 +2,10 @@ const User=require('../../models/user')
 const bcrypt = require('bcrypt')
 const passport = require('passport') 
 function authController(){
+    const _getRedirerctUrl=(req)=>{
+        return req.user.role==='admin'? '/admin/orders':'/customer/orders'
+    
+    }
     return {
         login(req, res) {
             res.render('auth/login')
@@ -13,6 +17,7 @@ function authController(){
                 req.flash('error', 'All fields are required')
                 return res.redirect('/login')
             }
+            const cartData = req.session?.cart;
             passport.authenticate('local', (err, user, info) => {
                 if(err) {
                     req.flash('error', info.message )
@@ -27,8 +32,9 @@ function authController(){
                         req.flash('error', info.message ) 
                         return next(err)
                     }
-
-                    return res.redirect(_getRedirectUrl(req))
+                    return res.redirect(_getRedirerctUrl(req))
+                    req.session['cart'] = cartData;
+                    // return res.redirect('/')
                 })
             })(req, res, next)
         },

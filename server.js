@@ -6,6 +6,7 @@ const path = require('path')
 const expressLayout=require('express-ejs-layouts')
 const exp = require('constants')
 const passport= require('passport')
+const Emitter = require('events')
 const PORT=process.env.PORT||3000
 
 const mongoose= require('mongoose')
@@ -29,6 +30,9 @@ let mongoStore = new MongoDbStore({
     collection: 'sessions'
 })
 
+// Event emitter
+const eventEmitter = new Emitter()
+app.set('eventEmitter', eventEmitter)
 
 // Session config
 app.use(session({
@@ -69,7 +73,24 @@ require('./routes/web')(app)
 
 
 
-app.listen(PORT, () => {
+const server = app.listen(PORT , () => {
     console.log(`Listening on port ${PORT}`)
 })
 
+// Socket
+
+const io = require('socket.io')(server)
+io.on('connection', (socket) => {
+      // Join
+      socket.on('join', (orderId) => {
+        socket.join(orderId)
+      })
+})
+
+eventEmitter.on('orderUpdated', (data) => {
+    io.to(`order_${data.id}`).emit('orderUpdated', data)
+})
+
+eventEmitter.on('orderPlaced', (data) => {
+    io.to('adminRoom').emit('orderPlaced', data)
+})
