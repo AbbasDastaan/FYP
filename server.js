@@ -8,7 +8,7 @@ const exp = require('constants')
 const passport= require('passport')
 const Emitter = require('events')
 const PORT=process.env.PORT||3000
-
+const methodOverride = require('method-override');
 const mongoose= require('mongoose')
 const session=require('express-session')
 const flash=require('express-flash')
@@ -42,7 +42,8 @@ app.use(session({
     saveUninitialized: false,
     cookie: { maxAge: 1000 * 60 * 60 * 24 } // 24 hour
 }))
-
+app.use(express.urlencoded({ extended: true }));
+app.use(methodOverride('_method'));
 // Passport config
 const passportInit = require('./app/config/passport')
 passportInit(passport)
@@ -94,3 +95,12 @@ eventEmitter.on('orderUpdated', (data) => {
 eventEmitter.on('orderPlaced', (data) => {
     io.to('adminRoom').emit('orderPlaced', data)
 })
+app.delete('/cart/:itemId', (req, res) => {
+    const itemId = req.params.itemId;
+    // Perform the deletion logic here (remove from database/session, etc.)
+    // ...
+  
+    // Redirect back to the cart page after deletion
+    res.redirect('/cart');
+  });
+  

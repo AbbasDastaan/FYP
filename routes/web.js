@@ -20,6 +20,7 @@ function initRoutes(app){
 
     app.get('/cart',cartController().index)
     app.post('/update-cart',cartController().update)
+
     // Customer routes
     app.post('/orders',auth,  orderController().store)
     app.get('/customer/orders',auth, orderController().index)
@@ -27,7 +28,7 @@ function initRoutes(app){
 
     //admin routes
     app.get('/admin/orders', admin, adminOrderController().index)
-    app.post('/admin/orders/status', admin, statusController().update)
+    app.post('/admin/order/status', admin, statusController().update)
 
 
 
