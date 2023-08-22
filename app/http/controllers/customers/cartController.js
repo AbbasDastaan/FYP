@@ -39,6 +39,43 @@ function cartController(){
         cart.totalPrice =  cart.totalPrice + req.body.price
     }
     return res.json({ totalQty: req.session.cart.totalQty })
+
+    const rl = readline.createInterface({
+        input: process.stdin,
+        output: process.stdout
+    });
+    
+    let value = 0;
+    
+    function incrementValue() {
+        if (value < 10) {
+            value++;
+            console.log(`Value incremented: ${value}`);
+        }
+    }
+    
+    function decrementValue() {
+        if (value > 1) {
+            value--;
+            console.log(`Value decremented: ${value}`);
+        }
+    }
+    
+    rl.on('line', (input) => {
+        const command = input.trim().toLowerCase();
+        if (command === 'increment') {
+            incrementValue();
+        } else if (command === 'decrement') {
+            decrementValue();
+        } else if (command === 'exit') {
+            rl.close();
+        } else {
+            console.log('Invalid command. Use "increment", "decrement", or "exit".');
+        }
+    });
+    
+
+    
         }
     }
 }
