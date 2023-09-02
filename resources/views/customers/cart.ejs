@@ -5,13 +5,13 @@
             <img src="/img/cart-black.png" alt="">
             <h1 class="font-bold ml-4 text-2xl">Order Summary </h1>
         </div >
-        <div class="container mx-auto flex items-center justify-between py-4 font-bold" >
+        <!-- <div class="container mx-auto flex items-center justify-between py-4 font-bold" >
 
             <h1>Item</h1>
             <h1>Quantity</h1>
             <h1>Price</h1>
             <h1>Action</h1>
-        </div>
+        </div> -->
         <div class="food-list">
         <% for(let food of Object.values(session.cart.items)){%>
         <div class="food-list">
@@ -21,13 +21,18 @@
                     <h1><%= food.item.name %></h1>
                     <span><%= food.item.size %></span>
                 </div>
-                
-                <span class="flex-1"><%= food.qty %></span>
+                <span class="container flex-1">
+                <input type="button" onclick="decrementValue()" value="-" />
+                <input type="text" name="quantity" value="<%= food.qty %>" maxlength="2" max="10" size="1" id="number" />
+                <input type="button" onclick="incrementValue()" value="+" />
+                </span>
+                <!-- <span class="flex-1"><%= food.qty %></span> -->
                 <span class="font-bold text-lg "><%= food.item.price * food.qty %></span>
                 <div>
-                    <form action="" method="POST">
-                        <input type="hidden" name="foodId" value="<%= food.Id%>">
-                        <button class="add-btn px-4 py-2 rounded-full text-white font-bold mt-2 ml-2">Delete</button>
+                    <!-- <button class="dlt-btn ml-12" id="deleteCartitem" data-food-id="<%= food.item._id %>">Delete</button> -->
+                    <form action="/cart/delete-item" method="POST">
+                        <input type="hidden" name="product_id" value="<%= food.item._id %>">
+                        <button class="add-btn">Delete</button>
                     </form>
                 </div>
              </div>

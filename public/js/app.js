@@ -31254,6 +31254,7 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
 
 var addToCart = document.querySelectorAll('.add-to-cart');
 var cartCounter = document.querySelector('#cartCounter');
+var deleteCartitem = document.querySelector('deleteCartitem');
 function updateCart(foodies) {
   axios__WEBPACK_IMPORTED_MODULE_0__["default"].post('/update-cart', foodies).then(function (res) {
     console.log(res);

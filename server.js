@@ -24,7 +24,7 @@ mongoose.connect(url).then(() =>{
 .catch((err) =>{
     console.log("database connection error",err.message)
 })
-
+//session store
 let mongoStore = new MongoDbStore({
     mongooseConnection: mongoose.connection,
     collection: 'sessions'
@@ -63,7 +63,7 @@ app.use((req, res, next) => {
 app.use(expressLayout)
 app.set('views', path.join(__dirname, '/resources/views'))
 app.set('view engine', 'ejs')
-app.set('view engine','ejs')
+// app.set('view engine','ejs')
 
 
 //assect
@@ -95,12 +95,3 @@ eventEmitter.on('orderUpdated', (data) => {
 eventEmitter.on('orderPlaced', (data) => {
     io.to('adminRoom').emit('orderPlaced', data)
 })
-app.delete('/cart/:itemId', (req, res) => {
-    const itemId = req.params.itemId;
-    // Perform the deletion logic here (remove from database/session, etc.)
-    // ...
-  
-    // Redirect back to the cart page after deletion
-    res.redirect('/cart');
-  });
-  

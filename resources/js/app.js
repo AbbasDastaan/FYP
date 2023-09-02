@@ -6,6 +6,7 @@ import moment from 'moment'
 
 let addToCart=document.querySelectorAll('.add-to-cart')
 let cartCounter= document.querySelector('#cartCounter')
+let deleteCartitem= document.querySelector('deleteCartitem')
 
 function updateCart(foodies){
     axios.post('/update-cart',foodies).then(res =>{
@@ -32,7 +33,11 @@ addToCart.forEach((btn) =>{
         let foodies=JSON.parse(btn.dataset.foodies)
         updateCart(foodies)
     })
+
+    
 })
+
+
 
 //remove msg
 const alertMsg = document.querySelector('#success-alert')

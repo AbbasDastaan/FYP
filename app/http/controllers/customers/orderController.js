@@ -17,7 +17,7 @@ function orderController(){
                 phone,
                 address
             })
-            // console.log('here ',order)
+            // consolze.log('here ',order)
             order.save().then(result=>{
                 Order.populate(result,{path:'customerId'},(err,placeOrder)=>{
                 req.flash('success','Order placed successfully')

@@ -1,11 +1,11 @@
-const User=require('../../models/user')
+const User = require('../../models/user')
 const bcrypt = require('bcrypt')
-const passport = require('passport') 
-function authController(){
-    const _getRedirerctUrl=(req)=>{
-        return req.user.role==='admin'? '/admin/orders':'/customer/orders'
-    
+const passport = require('passport')
+function authController() {
+    const _getRedirectUrl = (req) => {
+        return req.user.role === 'admin' ? '/admin/orders' : '/customer/orders'
     }
+    
     return {
         login(req, res) {
             res.render('auth/login')
@@ -17,7 +17,6 @@ function authController(){
                 req.flash('error', 'All fields are required')
                 return res.redirect('/login')
             }
-            const cartData = req.session?.cart;
             passport.authenticate('local', (err, user, info) => {
                 if(err) {
                     req.flash('error', info.message )
@@ -32,9 +31,8 @@ function authController(){
                         req.flash('error', info.message ) 
                         return next(err)
                     }
-                    return res.redirect(_getRedirerctUrl(req))
-                    req.session['cart'] = cartData;
-                    // return res.redirect('/')
+
+                    return res.redirect(_getRedirectUrl(req))
                 })
             })(req, res, next)
         },
@@ -51,8 +49,8 @@ function authController(){
             return res.redirect('/register')
          }
 
-        //  // Check if email exists 
-         User.exists({ email: email },(err, result) => {
+         // Check if email exists 
+         User.exists({ email: email }, (err, result) => {
              if(result) {
                 req.flash('error', 'Email already taken')
                 req.flash('name', name)

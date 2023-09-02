@@ -30,6 +30,17 @@ function initRoutes(app){
     app.get('/admin/orders', admin, adminOrderController().index)
     app.post('/admin/order/status', admin, statusController().update)
 
+    app.get('/', (req, res) => {
+        res.render('cart');
+      });
+      
+      app.post('/delete/:id', (req, res) => {
+        const idToDelete = parseInt(req.params.id);
+        food.item = food.item.filter(fooditem => food.item._id !== idToDelete);
+        res.redirect('/');
+      });
+      
+
 
 
 }
